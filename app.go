@@ -21,7 +21,7 @@ import (
 
 var botHandler *httphandler.WebhookHandler
 
-func init() {
+func main() {
 	err := godotenv.Load("line.env")
 	if err != nil {
 		panic(err)
