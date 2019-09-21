@@ -1,13 +1,10 @@
-application: mayu-bot
-version: 1
-runtime: go
-api_version: go1
+runtime: go111
+
+includes:
+  - secret.yaml
 
 handlers:
-  - url: /task.*
-    script: _go_app
-    login: admin
-    secure: always
   - url: /.*
-    script: _go_app
+    script: auto
     secure: always
+    redirect_http_response_code: 301
