@@ -53,6 +53,9 @@ func main() {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				replyText, mode := buildMessage(message.Text)
+				if replyText == "" {
+					return
+				}
 				profle, err := bot.GetProfile(event.Source.UserID).WithContext(c).Do()
 				if err != nil {
 					log.Print(err)
@@ -130,7 +133,7 @@ func buildMessage(text string) (string, string) {
 	if isContainsLetsSurf(text) {
 		return "退勤を確認しました！", "退勤"
 	}
-	return "確認できませんでした", ""
+	return "", ""
 }
 
 func isContainsLetsWork(targetContent string) bool {
